@@ -1,1 +1,0 @@
-rd_("AnReturns the next Snowflake ID.AkBase timestamp for metw.cc.gmetw-idAgDefines the ID wrapper.CiAn ID generator inspired by Twitter\xe2\x80\x99s Snowflake format.BmCurrent timestamp, with clock skew detection.AlSets the Snowflake constant.")
