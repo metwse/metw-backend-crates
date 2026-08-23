@@ -24,7 +24,7 @@ jobs:
         shell: bash
 
       - name: Redirect to Documentation Crate from index.html
-        run: echo '<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; URL=_docs/index.html" /></head></html>' > target/doc/index.html
+        run: echo '<!DOCTYPE html><html><head><meta http-equiv="Refresh" content="0; URL=metw_id/index.html" /></head></html>' > target/doc/index.html
         shell: bash
 
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
