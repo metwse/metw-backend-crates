@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["checked_now"],"macro":[["define_id",1]],"mod":["snowflake"]};
