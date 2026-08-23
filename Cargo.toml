@@ -1,12 +1,15 @@
 [workspace]
 resolver = "3"
-members = ["metw-id", "metw-id-tests"]
+members = ["metw-id", "metw-id-tests", "metw-observability"]
 
 [workspace.dependencies]
 tokio = "1"
 axum = "0.8.9"
+
 tower = "0.5"
+tower-http = "0.7"
 http-body-util = "0.1.5"
+http = "1.4"
 
 chrono = "0.4"
 
@@ -20,6 +23,13 @@ utoipa = "5.5"
 
 dotenvy = "0.15"
 pastey = "0.2"
+
+tracing = "0.1"
+tracing-subscriber = "0.3"
+tracing-opentelemetry = "0.33"
+opentelemetry = "0.32"
+opentelemetry-otlp = "0.32"
+opentelemetry_sdk = "0.32"
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

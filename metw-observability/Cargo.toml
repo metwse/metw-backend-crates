@@ -1,0 +1,27 @@
+[package]
+name = "metw-observability"
+version = "0.0.0"
+edition = "2024"
+
+[dependencies]
+tower-http = { workspace = true, features = ["trace"] }
+axum = { workspace = true }
+http = { workspace = true }
+
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+tracing-opentelemetry = { workspace = true, optional = true }
+opentelemetry = { workspace = true, optional = true }
+opentelemetry-otlp = { workspace = true, features = ["grpc-tonic"], optional = true }
+opentelemetry_sdk = { workspace = true, optional = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["full"] }
+
+dotenvy = { workspace = true }
+
+[features]
+otel = ["dep:opentelemetry", "dep:tracing-opentelemetry", "dep:opentelemetry-otlp", "dep:opentelemetry_sdk"]
+
+[lints]
+workspace = true
