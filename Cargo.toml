@@ -1,0 +1,23 @@
+[workspace]
+resolver = "3"
+members = ["metw-id", "metw-id-tests"]
+
+[workspace.dependencies]
+chrono = "0.4"
+
+serde = "1"
+serde_with = "3"
+
+sqlx = "0.9"
+
+utoipa = "5.5"
+
+pastey = "0.2"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "forbid"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = "warn"

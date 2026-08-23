@@ -1,0 +1,21 @@
+[package]
+name = "metw-id"
+version = "0.0.0"
+edition = "2024"
+
+[dependencies]
+chrono = { workspace = true }
+
+serde = { workspace = true, features = ["derive"] }
+serde_with = { workspace = true }
+
+sqlx = { workspace = true, features = ["postgres"] }
+
+utoipa = { workspace = true }
+
+pastey = { workspace = true }
+
+[features]
+
+[lints]
+workspace = true

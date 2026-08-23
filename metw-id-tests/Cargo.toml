@@ -1,0 +1,10 @@
+[package]
+name = "metw-id-tests"
+version = "0.0.0"
+edition = "2024"
+
+[dependencies]
+metw-id = { path = "../metw-id" }
+
+[lints]
+workspace = true
