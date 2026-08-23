@@ -1,3 +1,7 @@
 //! # metw-id test module.
 
-metw_id::define_id!(DefineTestEntity);
+// Defines TestId.
+metw_id::define_id!(Test);
+
+#[cfg(test)]
+mod test;

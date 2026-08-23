@@ -6,5 +6,19 @@ edition = "2024"
 [dependencies]
 metw-id = { path = "../metw-id" }
 
+[dev-dependencies]
+tokio = { workspace = true, features = ["full"] }
+axum = { workspace = true }
+tower = { workspace = true, features = ["util"] }
+http-body-util = { workspace = true }
+
+sqlx = { workspace = true, features = ["postgres", "runtime-tokio"] }
+
+serde_json = { workspace = true }
+
+utoipa = { workspace = true }
+
+dotenvy = { workspace = true }
+
 [lints]
 workspace = true

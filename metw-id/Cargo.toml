@@ -15,7 +15,5 @@ utoipa = { workspace = true }
 
 pastey = { workspace = true }
 
-[features]
-
 [lints]
 workspace = true
