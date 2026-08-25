@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["metw-id", "metw-id-tests", "metw-observability", "metw-server"]
+members = ["metw-id", "metw-id-tests", "metw-server"]
 
 [workspace.dependencies]
 tokio = "1"

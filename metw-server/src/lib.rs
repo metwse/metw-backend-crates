@@ -12,9 +12,18 @@ use axum::Router;
 use std::{env, net::SocketAddr};
 use tokio::signal;
 
+pub mod observability;
+
 /// Serve the application.
 pub async fn serve(app: Router, service_name: String) {
-    metw_observability::init_tracing(service_name);
+    #[cfg(feature = "otel")]
+    let tracer_provider = observability::init_tracing_with_otel(service_name);
+    #[cfg(not(feature = "otel"))]
+    {
+        observability::init_tracing();
+
+        let _ = service_name;
+    }
 
     let sock_addr: SocketAddr = env::var("HOST")
         .unwrap_or_else(|_| {
@@ -36,16 +45,18 @@ pub async fn serve(app: Router, service_name: String) {
             .allow_origin(Any)
             .allow_headers(AllowHeaders::any());
 
-        app.layer(cors)
-            .layer(metw_observability::trace_layer_for_http())
+        app.layer(cors).layer(observability::trace_layer_for_http())
     };
     #[cfg(not(feature = "allow-all-cors"))]
-    let app = app.layer(metw_observability::trace_layer_for_http());
+    let app = app.layer(observability::trace_layer_for_http());
 
     axum::serve(listener, app)
         .with_graceful_shutdown(shutdown_signal())
         .await
         .unwrap();
+
+    #[cfg(feature = "otel")]
+    tracer_provider.shutdown().unwrap();
 }
 
 async fn shutdown_signal() {

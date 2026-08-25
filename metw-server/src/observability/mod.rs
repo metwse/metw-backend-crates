@@ -13,18 +13,14 @@
 //!
 //! - An environment-based filter configured through `RUST_LOG`.
 //! - A human-readable formatting layer.
-//! - An OpenTelemetry layer when the `otel` feature is enabled.
 //!
 //!
 //! ## OpenTelemetry
 //!
 //! When the `otel` feature is enabled, tracing spans are exported over
 //! OTLP/gRPC. The collector endpoint is read from `OTEL_EXPORTER` environment
-//! variable (defaults to `http://localhost:4317`).
-//!
-//! The value passed to [`init_tracing`] is recorded as the OpenTelemetry
-//! `service.name` resource attribute. When the `otel` feature is disabled,
-//! the service name is ignored.
+//! variable (defaults to `http://localhost:4317`). [`init_tracing_with_otel`]
+//! initializes tracing with OTEL exporter.
 //!
 //!
 //! ## HTTP request tracing
@@ -42,5 +38,8 @@ mod init_tracing;
 mod trace_layer_for_http;
 
 pub use init_tracing::init_tracing;
+
+#[cfg(feature = "otel")]
+pub use init_tracing::init_tracing_with_otel;
 
 pub use trace_layer_for_http::trace_layer_for_http;

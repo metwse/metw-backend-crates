@@ -1166,7 +1166,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "metw-observability"
+name = "metw-server"
 version = "0.0.0"
 dependencies = [
  "axum",
@@ -1180,16 +1180,6 @@ dependencies = [
  "tracing",
  "tracing-opentelemetry",
  "tracing-subscriber",
-]
-
-[[package]]
-name = "metw-server"
-version = "0.1.0"
-dependencies = [
- "axum",
- "metw-observability",
- "tokio",
- "tower-http 0.7.0",
 ]
 
 [[package]]
