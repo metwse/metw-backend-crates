@@ -26,7 +26,7 @@ pub fn otel_layer<S: tracing::Subscriber + for<'span> LookupSpan<'span>>(
         .unwrap();
 
     let provider = SdkTracerProvider::builder()
-        .with_simple_exporter(otlp_exporter)
+        .with_batch_exporter(otlp_exporter)
         .with_resource(
             opentelemetry_sdk::Resource::builder()
                 .with_service_name(service_name.clone())
