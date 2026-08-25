@@ -78,11 +78,12 @@ pub fn next() -> i64 {
 
 /// Sets the Snowflake constant.
 ///
-/// Note: The constant cannot be greater than 2¹⁰-1.
+/// Note: The constant cannot be greater than 2¹⁰-1, or less than 0
 pub fn load_constant(snowflake_constant: i64) {
-    if snowflake_constant > 2i64.pow(10) - 1 {
-        panic!("snowflake constant cannot be greater than 2¹⁰-1, 1023");
-    }
+    assert!(
+        (0..=1023).contains(&snowflake_constant),
+        "snowflake constant must be between 0 and 1023"
+    );
 
     SNOWFLAKE_CONSTANT.store(snowflake_constant, Ordering::Relaxed);
 }
@@ -114,6 +115,12 @@ mod test {
     }
 
     #[test]
+    #[should_panic]
+    fn negative_constant() {
+        load_constant(-1);
+    }
+
+    #[test]
     fn constant() {
         let constant = 2i64.pow(10 - 1);
 
@@ -122,5 +129,7 @@ mod test {
         let snowflake = next();
 
         assert_eq!((snowflake >> 12) & (2i64.pow(10) - 1), constant);
+
+        load_constant(0);
     }
 }

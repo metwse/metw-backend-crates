@@ -66,7 +66,7 @@ macro_rules! define_id {
 
                 impl ToSchema for [< $name Id >] {
                     fn name() -> std::borrow::Cow<'static, str> {
-                        std::borrow::Cow::Borrowed("String")
+                        std::borrow::Cow::Borrowed(stringify!([< $name Id >]))
                     }
                 }
 

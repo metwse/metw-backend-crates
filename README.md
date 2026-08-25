@@ -1,8 +1,8 @@
-# metw-rs
-Various utilities used in metw.cc services.
+# metw-backend-crates
+Various utilities used in metw.cc backend services.
 
 *Check out online documentation for deployment and development notes.* \
-[metwse.github.io/metw-rs/](https://metwse.github.io/metw-rs/)
+[metwse.github.io/metw-backend-crates/](https://metwse.github.io/metw-backend-crates/)
 
 ## Contributing
 <img width="96" height="96" alt="no-ai-slop" align="right" src="https://github.com/user-attachments/assets/bca16d5a-a6fe-4cbf-b41f-1176e000cff2" />
