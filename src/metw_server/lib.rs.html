@@ -63,9 +63,23 @@
 <a href=#63 id=63 data-nosnippet>63</a>    <span class="kw">let </span>ctrl_c = <span class="kw">async </span>{
 <a href=#64 id=64 data-nosnippet>64</a>        signal::ctrl_c()
 <a href=#65 id=65 data-nosnippet>65</a>            .<span class="kw">await
-<a href=#66 id=66 data-nosnippet>66</a>            </span>.expect(<span class="string">"failed to install Ctrl+C handler"</span>)
+<a href=#66 id=66 data-nosnippet>66</a>            </span>.expect(<span class="string">"failed to install Ctrl+C handler"</span>);
 <a href=#67 id=67 data-nosnippet>67</a>    };
 <a href=#68 id=68 data-nosnippet>68</a>
-<a href=#69 id=69 data-nosnippet>69</a>    ctrl_c.<span class="kw">await
-<a href=#70 id=70 data-nosnippet>70</a></span>}
+<a href=#69 id=69 data-nosnippet>69</a>    <span class="attr">#[cfg(unix)]
+<a href=#70 id=70 data-nosnippet>70</a>    </span><span class="kw">let </span>terminate = <span class="kw">async </span>{
+<a href=#71 id=71 data-nosnippet>71</a>        signal::unix::signal(signal::unix::SignalKind::terminate())
+<a href=#72 id=72 data-nosnippet>72</a>            .expect(<span class="string">"failed to install signal handler"</span>)
+<a href=#73 id=73 data-nosnippet>73</a>            .recv()
+<a href=#74 id=74 data-nosnippet>74</a>            .<span class="kw">await</span>;
+<a href=#75 id=75 data-nosnippet>75</a>    };
+<a href=#76 id=76 data-nosnippet>76</a>
+<a href=#77 id=77 data-nosnippet>77</a>    <span class="attr">#[cfg(not(unix))]
+<a href=#78 id=78 data-nosnippet>78</a>    </span><span class="kw">let </span>terminate = std::future::pending::&lt;()&gt;();
+<a href=#79 id=79 data-nosnippet>79</a>
+<a href=#80 id=80 data-nosnippet>80</a>    <span class="macro">tokio::select!</span> {
+<a href=#81 id=81 data-nosnippet>81</a>        <span class="kw">_ </span>= ctrl_c =&gt; {},
+<a href=#82 id=82 data-nosnippet>82</a>        <span class="kw">_ </span>= terminate =&gt; {},
+<a href=#83 id=83 data-nosnippet>83</a>    }
+<a href=#84 id=84 data-nosnippet>84</a>}
 </code></pre></div></section></main></body></html>
