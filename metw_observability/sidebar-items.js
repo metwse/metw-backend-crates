@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["init_tracing","trace_layer_for_http"]};
