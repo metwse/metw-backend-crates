@@ -5,7 +5,7 @@
 //!
 //! ## Cargo features
 //!
-//! - `otel`: Enables OTLP/gRPC trace export.
+//! - `otel`: Enables OTLP/gRPC trace export. See [`observability`].
 //! - `allow-all-cors`: Allows CORS for all hosts.
 
 use axum::Router;

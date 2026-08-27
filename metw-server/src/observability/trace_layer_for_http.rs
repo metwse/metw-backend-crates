@@ -17,7 +17,7 @@ impl<B> MakeSpan<B> for MakeSpanImpl {
             if let Some(matched_path) = matched_path {
                 let method = request.method().as_str();
 
-                return tracing::debug_span!(
+                return tracing::info_span!(
                     "request",
                     "otel.name" = format!("{method} {matched_path}")
                 );
@@ -26,7 +26,10 @@ impl<B> MakeSpan<B> for MakeSpanImpl {
             let _ = request;
         }
 
-        tracing::debug_span!("request")
+        tracing::debug_span!(
+            "request",
+            "path" = request.uri().path()
+        )
     }
 }
 

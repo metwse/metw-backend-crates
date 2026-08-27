@@ -1,11 +1,6 @@
 //! Shared tracing and OpenTelemetry configuration for metw.cc services.
 //!
 //!
-//! ## Cargo features
-//!
-//! - `otel`: Enables OTLP/gRPC trace export.
-//!
-//!
 //! ## Initialization
 //!
 //! Call [`init_tracing`] once, near the beginning of the application. The
