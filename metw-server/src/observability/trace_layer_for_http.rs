@@ -26,10 +26,7 @@ impl<B> MakeSpan<B> for MakeSpanImpl {
             let _ = request;
         }
 
-        tracing::info_span!(
-            "request",
-            "path" = request.uri().path()
-        )
+        tracing::info_span!("request", "path" = request.uri().path())
     }
 }
 

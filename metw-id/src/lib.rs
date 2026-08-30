@@ -64,6 +64,18 @@ macro_rules! define_id {
                     }
                 }
 
+                impl PartialOrd for [< $name Id >] {
+                    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+                        self.0.partial_cmp(&other.0)
+                    }
+                }
+
+                impl Ord for [< $name Id >] {
+                    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
+                        self.0.cmp(&other.0)
+                    }
+                }
+
                 impl ToSchema for [< $name Id >] {
                     fn name() -> std::borrow::Cow<'static, str> {
                         std::borrow::Cow::Borrowed(stringify!([< $name Id >]))

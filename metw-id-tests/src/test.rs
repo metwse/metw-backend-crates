@@ -30,6 +30,16 @@ fn app() -> Router {
     Router::new().route("/{id}", get(ping))
 }
 
+#[test]
+fn ordering() {
+    for _ in 0..1023 {
+        let first = TestId::unique();
+        let second = TestId::unique();
+
+        assert!(first < second);
+    }
+}
+
 #[tokio::test]
 async fn axum() {
     let id = TestId::unique();
